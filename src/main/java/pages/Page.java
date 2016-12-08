@@ -1,5 +1,6 @@
 package pages;
 
+import common.PropertyBase;
 import driver.AdditionalConditions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,10 +11,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Page {
     WebDriver driver;
     WebDriverWait wait;
+    PropertyBase propertyBase = new PropertyBase();
+
+    String baseUrl = propertyBase.getProperty("baseUrl");
+    int waitTime = Integer.valueOf(propertyBase.getProperty("waitTime"));
 
     public Page(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, 5);
+        this.wait = new WebDriverWait(driver, waitTime);
     }
 
     protected void clickBy(By by) {
@@ -29,5 +34,9 @@ public class Page {
         WebElement element = driver.findElement(by);
         element.clear();
         element.sendKeys(content);
+    }
+
+    public void goToHomePage() {
+        driver.get(baseUrl);
     }
 }
