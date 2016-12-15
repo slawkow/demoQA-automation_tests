@@ -2,6 +2,7 @@ package tests;
 
 import org.testng.annotations.Test;
 import pages.HomePage;
+import test.BaseForTests;
 
 import static org.testng.Assert.assertTrue;
 
@@ -14,9 +15,9 @@ public class SmokeTests extends BaseForTests {
     }
 
     @Test
-    public void firstTest() {
+    public void failTestForScreenshotCheck() {
         homePage.goToHomePage();
-        assertTrue(driver.getCurrentUrl().equals(homeAddress));
+        assertTrue(driver.getCurrentUrl().equals(homeAddress + "wrongAddress"));
     }
 
     @Test
